@@ -2,9 +2,9 @@
 
 Consumo da pokeAPI RESTful com TypeScript e ReactJS
 
-## Instalação
+## Metodologia e arquitetura
 
-**NOTA:** Para executar qualquer um dos comandos abaixo, é imprescindível ter o gerenciador de dependência NPM instalado globalmente em seu computador, e nagevar para dentro do diretório root da aplicação para que todos os comandos possam ser executados com sucesso.
+Levando em consideração que menos é mais, acredito que não seja necessário a implementação de uma dependência como Redux nesta aplicação, visando mantê-la mais enxuta possível em todos os níveis. Até cogitei implementar a metodologia Flux, para que os componentes pudessem se comunicar entre si, mas ao invés disso, utilizei a React Hooks api para o fluxo de dados do Context, mantendo tudo rápido e fluído. Fazendo uma analogia, é como se a arquitetura da aplicação fosse uma fonte de água, onde o fluxo de água escorre de cima para baixo. Tudo foi encapsulado e fragmentado em suas respectivas responsabilidades, componentes, views, componentes de estilo. Ou seja, cada parte da aplicacão, por menor que seja, foi componentizada/modularizada.
 
 ### Instalação local
 
@@ -53,10 +53,6 @@ Ao clicar em um card da lista, você sera redirecionado para a página de inform
 ### Pokemon - Sobre
 
 Nesta página é renderizado o nome, id, abilidades, e estatísticas como: HP; Ataque; Defesa e velocidade da criatura selecionada.
-
-## Metodologia e arquitetura
-
-Levando em consideração que menos é mais, acredito que não seja necessário a implementação de uma dependência como Redux nesta aplicação, visando mantê-la mais enxuta possível em todos os níveis. Até cogitei implementar a metodologia Flux, para que os componentes pudessem se comunicar entre si, mas ao invés disso, utilizei a React Hooks api para o fluxo de dados do Context, mantendo tudo rápido e fluído. Fazendo uma analogia, é como se a arquitetura da aplicação fosse uma fonte de água, onde o fluxo de água escorre de cima para baixo. Tudo foi encapsulado e fragmentado em suas respectivas responsabilidades, componentes, views, componentes de estilo. Ou seja, cada parte da aplicacão, por menor que seja, foi componentizada/modularizada.
 
 ## Tecnologias integradas
 
