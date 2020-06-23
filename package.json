@@ -9,7 +9,7 @@
     "build:format": "npm run format && npm run lint && react-scripts build",
     "build": "react-scripts build",
     "clean": "del ./build ./package-lock.json ./npm-debug.log",
-    "start": "npm run build && node ./server"
+    "start": "node ./server"
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.1",
