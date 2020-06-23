@@ -69,4 +69,5 @@ Levando em consideração que menos é mais, acredito que não seja necessário 
 - [x] JSX
 - [x] React - hooks: Context, useState, useEffect, useCallback, useContext
 - [x] TypeScript
+- [x] SPA
 - [x] Styled Components
