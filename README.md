@@ -39,11 +39,11 @@ Este comando cria os arquivos de produção dentro do diretório ./build e inici
 
     npm run start
 
-**Nota:** Esta aplicação esta online no Heroku, sob o seguinte link: [https://pokedex-app.herokuapp.com/](https://pokedex-app.herokuapp.com/). Se você possui um servidor local capaz de executar aplicações web, e quiser executar o projeto em modo produção, rode no terminal o comando `npm run start`. O servidor Express esta configurado para utilizar a porta 3030, o link para acessar localmente é [https://http://localhost:3030/](https://http://localhost:3030/).
+**Nota:** Esta aplicação esta online no Heroku, sob o seguinte link: [https://pokedex-on.herokuapp.com/](https://pokedex-on.herokuapp.com/). Se você possui um servidor local capaz de executar aplicações web, e quiser executar o projeto em modo produção, rode no terminal o comando `npm run start`. O servidor Express esta configurado para utilizar a porta 3030, o link para acessar localmente é [https://http://localhost:3030/](https://http://localhost:3030/).
 
 ## Uso da aplicação
 
-Acesso: [https://pokedex-app.herokuapp.com/](https://pokedex-app.herokuapp.com/)
+Acesso: [https://pokedex-on.herokuapp.com/](https://pokedex-on.herokuapp.com/)
 
 ### Home - Lista de Pokemon
 
