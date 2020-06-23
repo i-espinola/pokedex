@@ -1,6 +1,6 @@
-# pokedex
+# Pokedex App
 
-Consumo da pokeAPI RESTful com Anúncios ReactJS
+Consumo da pokeAPI RESTful com TypeScript e ReactJS
 
 ## Instalação
 
