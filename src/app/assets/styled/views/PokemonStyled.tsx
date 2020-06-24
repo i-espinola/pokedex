@@ -6,6 +6,9 @@ export const Photo = styled.div`
   box-shadow: 2px 2px 10px #b5b9c4;
   width: 96px;
   height: 96px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const InfoHead = styled.div`
@@ -25,7 +28,6 @@ export const InfoHead = styled.div`
     line-height: 5.5rem;
     margin: 0;
     color: #17171b;
-    text-align: center;
   }
 
   & small {

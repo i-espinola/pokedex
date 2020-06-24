@@ -6,6 +6,8 @@ import Layout from '../../layout';
 import ArrowLeft from '../../assets/img/arrowLeft.svg';
 import * as Styled from '../../assets/styled/views/PokemonStyled';
 
+import Avatar from '../../assets/img/avatar.svg';
+
 interface IAbility {
   name: string;
   url?: string;
@@ -146,9 +148,7 @@ const Pokemon = (props: IProps) => {
         </Styled.Back>
         <Styled.InfoHead>
           <Styled.Photo>
-            {pokeData.image ? (
-              <img src={pokeData.image} alt={pokeData.name} />
-            ) : null}
+            <img src={pokeData.image || Avatar} alt={pokeData.name} />
           </Styled.Photo>
           <div>
             <small>{`#${pokeData.id}`}</small>
