@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Skeleton, Card } from 'antd';
+import { Card } from 'antd';
 import BoardStyle from '../../assets/styled/components/BoardStyled';
 
 interface IProps {
@@ -16,13 +16,11 @@ const Board = (props: IProps) => {
     <BoardStyle>
       <Card className="board">
         <Link to={`/pokemon/${props.id}`}>
-          <Skeleton loading={props.loader}>
-            <Meta
-              className="board-name"
-              description={`#${props.id}`}
-              title={props.name}
-            />
-          </Skeleton>
+          <Meta
+            className="board-name"
+            description={`#${props.id}`}
+            title={props.name}
+          />
         </Link>
       </Card>
     </BoardStyle>

@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
 import IconGithub from '../../assets/img/github.svg';
 import IconLinkedin from '../../assets/img/linkedin.svg';
-
 import FooterStyle from '../../assets/styled/components/FooterStyled';
 
 const Footer: FC = () => {
