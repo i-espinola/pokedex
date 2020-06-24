@@ -84,7 +84,7 @@ const Home = (props: IProps) => {
           className="list-items"
           grid={{
             gutter: 10,
-            xs: 2,
+            xs: 1,
             sm: 2,
             md: 3,
             lg: 4,
