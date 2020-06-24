@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
 const FooterStyled = styled.footer`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   color: #747476;
   margin: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-top: 1px solid #f2f2f2;
-  padding-top: 10px;
 
   & div {
     p {
