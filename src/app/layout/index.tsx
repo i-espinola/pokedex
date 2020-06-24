@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import LayoutStyle from '../assets/styled/layouts/LayoutStyled';
+import Description from '../assets/styled/layouts/LayoutStyled';
 import GlobalStyle from '../assets/styled/GlobalStyle';
 
 interface IProps {
@@ -16,23 +16,21 @@ const Main = (props: IProps) => {
   const { header, title, subtitle, children, footer } = props;
 
   const descriptionPage = () => (
-    <LayoutStyle>
+    <Description>
       {title ? <h1>{title}</h1> : null}
       {subtitle ? <span className="subtitle">{subtitle}</span> : null}
-    </LayoutStyle>
+    </Description>
   );
 
   return (
     <>
       <GlobalStyle />
-      <main>
-        {header ? <Header /> : null}
-        <section>
-          {title || subtitle ? descriptionPage() : null}
-          {children}
-        </section>
-        {footer ? <Footer /> : null}
-      </main>
+      {header ? <Header /> : null}
+      <section>
+        {title || subtitle ? descriptionPage() : null}
+        {children}
+      </section>
+      {footer ? <Footer /> : null}
     </>
   );
 };

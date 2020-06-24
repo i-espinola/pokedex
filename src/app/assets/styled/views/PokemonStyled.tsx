@@ -9,6 +9,11 @@ export const Photo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  & img {
+    max-width: 96px;
+    max-height: 96px;
+  }
 `;
 
 export const InfoHead = styled.div`

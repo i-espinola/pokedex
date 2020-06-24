@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useContext } from 'react';
-import { Input, List, Pagination } from 'antd';
+import { Input, List, Pagination, Result, Button } from 'antd';
 import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
 
@@ -32,6 +32,7 @@ interface IProps {
 const Home = (props: IProps) => {
   const [filter, setFilter] = useState('');
   const [totalCount, setTotalCount] = useState(0);
+  const [apiCatch, setApiCatch] = useState(false);
   const [pokemonList, setPokemonList] = useState<IPokemon[]>([]);
   const [pokemonFilter, setPokemonFilter] = useState<IPokemon[]>([]);
 
@@ -43,23 +44,38 @@ const Home = (props: IProps) => {
   const onGet = useCallback(async () => {
     const offSet = pageCurrent * pageSize - pageSize;
     const request = `${baseApi}?offset=${offSet}&limit=${pageSize}`;
+    const arr: IPokemon[] = [];
 
-    Axios.get(request).then((res) => {
-      const arr: IPokemon[] = [];
-      res.data.results.map((item: IResponse) => {
-        return arr.push({
-          name: item.name,
-          id:
-            item.url
-              .split('/')
-              .reverse()
-              .find((str: string) => Number(str)) || '',
+    Axios.get(request)
+      .then((res) => {
+        res.data.results.map((item: IResponse) => {
+          return arr.push({
+            name: item.name,
+            id:
+              item.url
+                .split('/')
+                .reverse()
+                .find((str: string) => Number(str)) || '',
+          });
         });
-      });
-      setPokemonList(arr);
-      setTotalCount(res.data.count);
-    });
+        setPokemonList(arr);
+        setTotalCount(res.data.count);
+      })
+      .catch(() => setApiCatch(true));
   }, [baseApi, pageCurrent, pageSize]);
+
+  const Catch = () => (
+    <Result
+      status="404"
+      title="404"
+      subTitle="Sorry, something went wrong."
+      extra={
+        <>
+          <Button onClick={() => history.push('/')}>Back Home</Button>
+        </>
+      }
+    />
+  );
 
   const renderListBoards = () => {
     return (
@@ -68,11 +84,11 @@ const Home = (props: IProps) => {
           className="list-items"
           grid={{
             gutter: 10,
-            xs: 1,
+            xs: 2,
             sm: 2,
-            md: 2,
-            lg: 3,
-            xl: 4,
+            md: 3,
+            lg: 4,
+            xl: 5,
             xxl: 5,
           }}
           dataSource={filter ? pokemonFilter : pokemonList}
@@ -127,37 +143,38 @@ const Home = (props: IProps) => {
 
   const onPagination = (page: number) => history.push(`/page/${page}`);
 
-  const render = () => {
-    return (
-      <Layout
-        header={false}
-        title="Pokédex"
-        subtitle="Search for Pokémon by name or using the National Pokédex number."
-      >
-        {renderAutoComplete()}
-        <div>
-          {renderListBoards()}
-          <Styled.Pagination>
-            <Pagination
-              responsive={true}
-              hideOnSinglePage={true}
-              showSizeChanger={false}
-              onChange={onPagination}
-              current={pageCurrent}
-              pageSize={pageSize}
-              total={totalCount}
-            />
-          </Styled.Pagination>
-        </div>
-      </Layout>
-    );
-  };
+  const renderPage = () => (
+    <>
+      {renderAutoComplete()}
+      {renderListBoards()}
+      <Styled.Pagination>
+        <Pagination
+          responsive={true}
+          hideOnSinglePage={true}
+          showSizeChanger={false}
+          onChange={onPagination}
+          current={pageCurrent}
+          pageSize={pageSize}
+          total={totalCount}
+        />
+      </Styled.Pagination>
+    </>
+  );
 
   useEffect(() => {
     onGet();
   }, [onGet]);
 
-  return render();
+  return (
+    <Layout
+      header={false}
+      title="Pokédex"
+      subtitle="Search for Pokémon by name or using the National Pokédex number."
+    >
+      {apiCatch ? Catch() : renderPage()}
+      <div />
+    </Layout>
+  );
 };
 
 export default Home;

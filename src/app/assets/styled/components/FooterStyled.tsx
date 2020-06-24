@@ -2,10 +2,12 @@ import styled from 'styled-components';
 
 const FooterStyled = styled.footer`
   color: #747476;
-  margin: 10px;
+  margin: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-top: 1px solid #f2f2f2;
+  padding-top: 10px;
 
   & div {
     p {

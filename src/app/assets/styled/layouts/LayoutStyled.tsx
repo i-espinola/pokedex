@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const LayoutStyled = styled.div`
+const Description = styled.div`
   margin: 0 20px 20px;
 
   & h1 {
@@ -18,4 +18,4 @@ const LayoutStyled = styled.div`
   }
 `;
 
-export default LayoutStyled;
+export default Description;
