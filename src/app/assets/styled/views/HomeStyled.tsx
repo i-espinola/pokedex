@@ -85,4 +85,10 @@ export const Input = styled.div`
 
 export const Items = styled.div`
   margin: 45px 0;
+
+  & .ant-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;

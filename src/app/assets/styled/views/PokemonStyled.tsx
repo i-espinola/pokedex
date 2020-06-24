@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+export const Photo = styled.div`
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 2px 2px 10px #b5b9c4;
+  width: 96px;
+  height: 96px;
+`;
+
 export const InfoHead = styled.div`
   display: flex;
   justify-content: start;
@@ -8,12 +16,6 @@ export const InfoHead = styled.div`
 
   & div {
     margin: 0 10px;
-  }
-
-  & img {
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 2px 2px 10px #b5b9c4;
   }
 
   & h1 {
@@ -79,4 +81,12 @@ export const CardPokedex = styled.div`
 export const Page = styled.div`
   display: table;
   margin: 0 auto;
+`;
+
+export const Load = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

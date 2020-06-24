@@ -88,17 +88,21 @@ const Home = (props: IProps) => {
 
   const searchCards = (val: string) => {
     let arr: IPokemon[] = [];
+    const isNumber = Number(val);
 
     if (val) {
       arr = pokemonList.filter((item) => {
+        if (isNumber) return item.id.includes(val);
         return item.name.toLowerCase().includes(val.toLowerCase());
       });
 
-      arr.sort((x, y) => {
-        if (x.name > y.name) return 1;
-        if (x.name < y.name) return -1;
-        return 0;
-      });
+      if (!isNumber) {
+        arr.sort((x, y) => {
+          if (x.name > y.name) return 1;
+          if (x.name < y.name) return -1;
+          return 0;
+        });
+      }
     }
 
     setFilter(val);

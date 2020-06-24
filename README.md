@@ -1,14 +1,22 @@
 # Pokedex App
 
-Consumo da pokeAPI RESTful com TypeScript e ReactJS
+ReactJS e TypeScript
+
+Acesso: [https://pokedex-on.herokuapp.com/](https://pokedex-on.herokuapp.com/)
 
 ## Metodologia e arquitetura
 
-Levando em consideração que menos é mais, acredito que não seja necessário a implementação de uma dependência como Redux nesta aplicação, visando mantê-la mais enxuta possível em todos os níveis. Até cogitei implementar a metodologia Flux, para que os componentes pudessem se comunicar entre si, mas ao invés disso, utilizei a React Hooks api para o fluxo de dados do Context, mantendo tudo rápido e fluído. Fazendo uma analogia, é como se a arquitetura da aplicação fosse uma fonte de água, onde o fluxo de água escorre de cima para baixo. Tudo foi encapsulado e fragmentado em suas respectivas responsabilidades, componentes, views, componentes de estilo. Ou seja, cada parte da aplicacão, por menor que seja, foi componentizada/modularizada.
+Levando em consideração que menos é mais, acredito que não seja necessário a implementação de uma dependência como Redux nesta aplicação, principalmente porque não foi necessário gerenciar o estado de uma forma complexa/global. Visando mantê-la mais enxuta possível em todos os níveis, até cogitei implementar a metodologia Flux, para que os componentes pudessem se comunicar entre si - fluxo de dados, mas, ao invés disso, utilizei o Hooks Context API da React para o fluxo de dados, mantendo tudo rápido e fluído. Fazendo uma analogia, é como se esta arquitetura fosse uma fonte de água, onde o fluxo de água flui de cima para baixo. Tudo foi encapsulado e fragmentado de acordo com suas respectivas responsabilidades, componentes funcionais, componentes de estilo e views. Ou seja, cada parte da aplicacão, por menor que seja, foi componentizada visando a reutilização de acordo com a demanda de escalabilidade.
 
-### Instalação local
+### baixar a aplicação
 
-Para fazer a instalação de todas as dependências da aplicação, execute a seguinte linha de comando no terminal.
+Para fazer a instalação local da aplicação, execute a seguinte linha de comando no seu terminal.
+
+    git clone git@github.com:i-espinola/pokedex.git pokedex
+
+### Instalação de dependências
+
+Para instalar todas as dependências exigidas pela aplicação, execute a linha asseguir.
 
     npm i
 
@@ -41,13 +49,12 @@ Este comando cria os arquivos de produção dentro do diretório ./build e inici
 
 **Nota:** Esta aplicação esta online no Heroku, sob o seguinte link: [https://pokedex-on.herokuapp.com/](https://pokedex-on.herokuapp.com/). Se você possui um servidor local capaz de executar aplicações web, e quiser executar o projeto em modo produção, rode no terminal o comando `npm run start`. O servidor Express esta configurado para utilizar a porta 3030, o link para acessar localmente é [https://http://localhost:3030/](https://http://localhost:3030/).
 
-## Uso da aplicação
-
-Acesso: [https://pokedex-on.herokuapp.com/](https://pokedex-on.herokuapp.com/)
+## Sobre
 
 ### Home - Lista de Pokemon
 
-A página home da aplicação lista e cria a paginação orientada pela URL da mesma com o limite de fixado em 20 itens. O campo de busca filtra por nome dos Pokemons da página atual, o mesmo não busca Pokemons por id. Isso não foi feito devido ao tempo.
+A página home da aplicação, lista e cria a paginação orientada pela URL com limite pre-fixado de 20 itens por página.
+O campo de busca filtra por nome ou ID dos Pokemons da página vigente (O campo busca não procura em todos os Pokemons da API, apenas na página atual).
 Ao clicar em um card da lista, você sera redirecionado para a página de informações de um Pokemon específico.
 
 ### Pokemon - Sobre

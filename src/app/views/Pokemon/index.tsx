@@ -129,7 +129,12 @@ const Pokemon = (props: IProps) => {
     }
   }, [baseApi, props.match.params.id, onGet]);
 
-  if (!pokeData) return <div />;
+  if (!pokeData)
+    return (
+      <Styled.Load>
+        <h3>Loading...</h3>
+      </Styled.Load>
+    );
 
   return (
     <Layout>
@@ -140,9 +145,11 @@ const Pokemon = (props: IProps) => {
           </Button>
         </Styled.Back>
         <Styled.InfoHead>
-          <div>
-            <img src={pokeData.image} alt={pokeData.name} />
-          </div>
+          <Styled.Photo>
+            {pokeData.image ? (
+              <img src={pokeData.image} alt={pokeData.name} />
+            ) : null}
+          </Styled.Photo>
           <div>
             <small>{`#${pokeData.id}`}</small>
             <h1>{pokeData.name}</h1>
