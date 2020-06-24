@@ -16,14 +16,14 @@ const Footer: FC = () => {
       <div>
         <ul>
           <li>
-            <Link to="https://github.com/i-espinola" target="blank">
+            <a href="https://github.com/i-espinola" target="blank">
               <img src={IconGithub} alt="github.com/i-espinola" />
-            </Link>
+            </a>
           </li>
           <li>
-            <Link to="https://www.linkedin.com/in/iespinola/" target="blank">
+            <a href="https://www.linkedin.com/in/iespinola/" target="blank">
               <img src={IconLinkedin} alt="in/iespinola" />
-            </Link>
+            </a>
           </li>
         </ul>
       </div>
