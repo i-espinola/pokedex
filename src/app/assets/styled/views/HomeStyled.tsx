@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Pagination = styled.div`
+export const Paginate = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

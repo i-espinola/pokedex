@@ -1,6 +1,26 @@
 import styled from 'styled-components';
 
-const BoardStyled = styled.div`
+export const PokeInfo = styled.div`
+  font-family: 'SF-Pro-Display-bold', sans-serif;
+
+  & p {
+    font-size: 26px;
+    line-height: 31px;
+    text-transform: capitalize;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  & dd {
+    font-size: 12px;
+    line-height: 14px;
+    color: rgba(23, 23, 27, 0.6);
+  }
+`;
+
+export const Board = styled.div`
   & .board {
     border: none;
     width: 200px;
@@ -14,24 +34,5 @@ const BoardStyled = styled.div`
       box-shadow: none;
       transform: scale(0.99);
     }
-
-    & .board-name {
-      font-family: 'SF-Pro-Display-bold', sans-serif;
-
-      & .ant-card-meta-title {
-        font-size: 26px;
-        line-height: 31px;
-        text-transform: capitalize;
-        color: #fff;
-      }
-
-      & .ant-card-meta-description {
-        font-size: 12px;
-        line-height: 14px;
-        color: rgba(23, 23, 27, 0.6);
-      }
-    }
   }
 `;
-
-export default BoardStyled;

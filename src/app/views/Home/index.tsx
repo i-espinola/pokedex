@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useCallback, useContext } from 'react';
-import { Input, List, Pagination, Result, Button } from 'antd';
-import { useHistory } from 'react-router-dom';
+import { Input } from 'antd';
 import Axios from 'axios';
 
-import Board from '../../components/Board';
+// import Board from '../../components/Board';
 import Layout from '../../layout';
-import IconSearch from '../../assets/img/search.svg';
+import CatchPage from '../../components/Catch';
+import ListPokemon from './ListPokemon';
+import IconFilter from '../../assets/img/search.svg';
 import * as Styled from '../../assets/styled/views/HomeStyled';
 
 import { PokeApiContext } from '../../contexts/PokeApiContext';
@@ -16,7 +17,7 @@ interface IResponse {
   count: number;
 }
 
-interface IPokemon {
+export interface IPokemon {
   name: string;
   id: string;
 }
@@ -35,11 +36,9 @@ const Home = (props: IProps) => {
   const [apiCatch, setApiCatch] = useState(false);
   const [pokemonList, setPokemonList] = useState<IPokemon[]>([]);
   const [pokemonFilter, setPokemonFilter] = useState<IPokemon[]>([]);
-
-  const { baseApi } = useContext(PokeApiContext);
-  const history = useHistory();
-  const pageSize = 20;
   const pageCurrent = parseInt(props.match.params.id, 10) || 1;
+  const { baseApi } = useContext(PokeApiContext);
+  const pageSize = 20;
 
   const onGet = useCallback(async () => {
     const offSet = pageCurrent * pageSize - pageSize;
@@ -49,67 +48,32 @@ const Home = (props: IProps) => {
     Axios.get(request)
       .then((res) => {
         res.data.results.map((item: IResponse) => {
-          return arr.push({
-            name: item.name,
-            id:
-              item.url
-                .split('/')
-                .reverse()
-                .find((str: string) => Number(str)) || '',
-          });
+          const { url, name } = item;
+          const id =
+            url
+              .split('/')
+              .reverse()
+              .find((str: string) => Number(str)) || '';
+
+          return arr.push({ name, id });
         });
+
         setPokemonList(arr);
         setTotalCount(res.data.count);
       })
       .catch(() => setApiCatch(true));
   }, [baseApi, pageCurrent, pageSize]);
 
-  const Catch = () => (
-    <Result
-      status="404"
-      title="404"
-      subTitle="Sorry, something went wrong."
-      extra={
-        <>
-          <Button onClick={() => history.push('/')}>Back Home</Button>
-        </>
-      }
-    />
-  );
+  const onFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
 
-  const renderListBoards = () => {
-    return (
-      <Styled.Items>
-        <List
-          className="list-items"
-          grid={{
-            gutter: 10,
-            xs: 1,
-            sm: 2,
-            md: 3,
-            lg: 4,
-            xl: 5,
-            xxl: 5,
-          }}
-          dataSource={filter ? pokemonFilter : pokemonList}
-          renderItem={(item: IPokemon) => (
-            <List.Item>
-              <Board key={item.id} name={item.name} id={item.id} />
-            </List.Item>
-          )}
-        />
-      </Styled.Items>
-    );
-  };
-
-  const searchCards = (val: string) => {
     let arr: IPokemon[] = [];
-    const isNumber = Number(val);
+    const isNumber = Number(value);
 
-    if (val) {
+    if (value) {
       arr = pokemonList.filter((item) => {
-        if (isNumber) return item.id.includes(val);
-        return item.name.toLowerCase().includes(val.toLowerCase());
+        if (isNumber) return item.id.includes(value);
+        return item.name.toLowerCase().includes(value.toLowerCase());
       });
 
       if (!isNumber) {
@@ -121,60 +85,52 @@ const Home = (props: IProps) => {
       }
     }
 
-    setFilter(val);
+    setFilter(value);
     setPokemonFilter(arr);
   };
 
-  const renderAutoComplete = () => {
-    const IconComp = () => <img src={IconSearch} alt="search" />;
-    return (
-      <Styled.Input>
-        <Input
-          size="large"
-          className="input-search"
-          value={filter}
-          prefix={<IconComp />}
-          onChange={(e) => searchCards(e.target.value)}
-          placeholder="What Pokémon are you looking for?"
-        />
-      </Styled.Input>
-    );
-  };
+  const IconComp = <img src={IconFilter} alt="search" />;
 
-  const onPagination = (page: number) => history.push(`/page/${page}`);
+  const renderInputFilter = (
+    <Styled.Input>
+      <Input
+        size="large"
+        className="input-search"
+        value={filter}
+        prefix={IconComp}
+        onChange={onFilter}
+        placeholder="What Pokémon are you looking for?"
+      />
+    </Styled.Input>
+  );
 
-  const renderPage = () => (
-    <>
-      {renderAutoComplete()}
-      {renderListBoards()}
-      <Styled.Pagination>
-        <Pagination
-          responsive={true}
-          hideOnSinglePage={true}
-          showSizeChanger={false}
-          onChange={onPagination}
-          current={pageCurrent}
-          pageSize={pageSize}
-          total={totalCount}
-        />
-      </Styled.Pagination>
-    </>
+  const renderListPokemon = (
+    <ListPokemon
+      pageCurrent={pageCurrent}
+      pageSize={pageSize}
+      totalCount={totalCount}
+      pokemonList={filter ? pokemonFilter : pokemonList}
+    />
+  );
+
+  const renderMain = (
+    <Layout
+      header={false}
+      title="Pokédex"
+      subtitle="Search for Pokémon by name or using the National Pokédex number."
+    >
+      {renderInputFilter}
+      {renderListPokemon}
+      <div />
+    </Layout>
   );
 
   useEffect(() => {
     onGet();
   }, [onGet]);
 
-  return (
-    <Layout
-      header={false}
-      title="Pokédex"
-      subtitle="Search for Pokémon by name or using the National Pokédex number."
-    >
-      {apiCatch ? Catch() : renderPage()}
-      <div />
-    </Layout>
-  );
+  if (apiCatch) return <CatchPage />;
+  return renderMain;
 };
 
 export default Home;

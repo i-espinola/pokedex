@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card } from 'antd';
-import BoardStyle from '../../assets/styled/components/BoardStyled';
+import { Card, Skeleton } from 'antd';
+import * as Styled from '../../assets/styled/components/BoardStyled';
 
 interface IProps {
   name: string;
@@ -10,20 +10,20 @@ interface IProps {
 }
 
 const Board = (props: IProps) => {
-  const { Meta } = Card;
-
+  const { id, name, loader = false } = props;
   return (
-    <BoardStyle>
-      <Card className="board">
-        <Link to={`/pokemon/${props.id}`}>
-          <Meta
-            className="board-name"
-            description={`#${props.id}`}
-            title={props.name}
-          />
-        </Link>
-      </Card>
-    </BoardStyle>
+    <Link to={id ? `/pokemon/${id}` : '/'}>
+      <Styled.Board>
+        <Card className="board">
+          <Styled.PokeInfo>
+            <Skeleton loading={loader} title={false} active>
+              <dd>#{id}</dd>
+              <p>{name}</p>
+            </Skeleton>
+          </Styled.PokeInfo>
+        </Card>
+      </Styled.Board>
+    </Link>
   );
 };
 
