@@ -13,7 +13,7 @@ Tudo foi encapsulado e fragmentado de acordo com suas respectivas responsabilida
 
 ## Tecnologias integradas
 
-- [x] Ant Design
+- Ant Design
 - [x] Axios
 - [x] CSR - SPA
 - [x] ESlint
