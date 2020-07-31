@@ -13,6 +13,7 @@ Tudo foi encapsulado e fragmentado de acordo com suas respectivas responsabilida
 
 ## Tecnologias integradas
 
+```
 - Ant Design
 - [x] Axios
 - [x] CSR - SPA
@@ -24,6 +25,7 @@ Tudo foi encapsulado e fragmentado de acordo com suas respectivas responsabilida
 - [x] React - hooks: Context, useState, useEffect, useCallback, useContext
 - [x] Styled Components
 - [x] TypeScript
+```
 
 ## Páginas
 
